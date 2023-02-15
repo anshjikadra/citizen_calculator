@@ -38,6 +38,8 @@ dependencies:
   cupertino_icons: ^1.0.2
   action_slider:
   math_expressions:
+  sqflite:
+  path_provider:
 
 dev_dependencies:
   flutter_test:

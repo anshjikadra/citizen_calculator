@@ -5,6 +5,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:math_expressions/math_expressions.dart';
 
+import '../history_db/history_data_file.dart';
+import '../history_db/history_db_model.dart';
+
 class f_page extends StatefulWidget {
   const f_page({Key? key}) : super(key: key);
 
@@ -14,12 +17,23 @@ class f_page extends StatefulWidget {
 
 class _f_pageState extends State<f_page> {
 
-  String result="";
+  String result="0";
+  String storevalue="0";
   String sign="";
   String expression="";
-  String secound="";
 
-  TextEditingController valueinput=TextEditingController();
+
+
+  @override
+  void initState() {
+    super.initState();
+    get_history();
+  }
+
+  get_history() async {
+    s_history = await DB.gethistory();
+    setState(() {});
+  }
 
 
   @override
@@ -49,7 +63,8 @@ class _f_pageState extends State<f_page> {
                        onPressed:(){
 
                          Navigator.push(context,MaterialPageRoute(builder: (context) {
-                           return history_page();
+                           return history_page(
+                           );
                          },));
                        },
                        child: Text("History",style: TextStyle(color: Colors.black,fontFamily: "Myfont"),),
@@ -89,13 +104,27 @@ class _f_pageState extends State<f_page> {
                         height: 40,
                          width: 40,
                           // color: Colors.red,
-                        child: Center(child: Text("00",style: TextStyle(fontFamily: "Mydigital",color: Colors.black,fontSize: 20),)),
+                        child: Center(child: Text("${storevalue.length}",style: TextStyle(fontFamily: "Mydigital",color: Colors.black,fontSize: 20),)),
                       ),
                     ),
                   ),
 
-                  SizedBox(height: 90,),
-
+                  SizedBox(height: 40,),
+                  // Expanded(
+                  //
+                  //   child: Container(
+                  //
+                  //      color: Colors.white,
+                  //     child:Padding(
+                  //       padding: const EdgeInsets.all(2.0),
+                  //       child: Align(alignment: Alignment.centerRight,child: Text(
+                  //         storevalue,style: TextStyle(color: Colors.black,fontSize: 40,fontFamily: "Mydigital"),)),
+                  //     ),
+                  //     //Align(alignment: Alignment.centerRight,child: Text(result,style: TextStyle(color: Colors.black,fontSize: 25),)),
+                  //
+                  //   ),
+                  // ),
+                  SizedBox(height: 10,),
                   Padding(
                     padding: const EdgeInsets.all(5.0),
                     child: Row(
@@ -108,6 +137,7 @@ class _f_pageState extends State<f_page> {
                           child: Center(child: Text(sign,style: TextStyle(color: Colors.black,fontFamily:"Mydigital",fontSize: 25),)),
                         ),
                         SizedBox(width: 5,),
+
                         Expanded(
 
                           child: Container(
@@ -116,7 +146,7 @@ class _f_pageState extends State<f_page> {
                             child:Padding(
                               padding: const EdgeInsets.all(2.0),
                               child: Align(alignment: Alignment.centerRight,child: Text(
-                                result.split("${sign}",).join(),style: TextStyle(color: Colors.black,fontSize: 40,fontFamily: "Mydigital"),)),
+                                result,style: TextStyle(color: Colors.black,fontSize: 40,fontFamily: "Mydigital"),)),
                             ),
                             //Align(alignment: Alignment.centerRight,child: Text(result,style: TextStyle(color: Colors.black,fontSize: 25),)),
 
@@ -201,7 +231,7 @@ class _f_pageState extends State<f_page> {
                   children: [
                     button("GT", Colors.grey, Colors.black,50,70),
 
-                    button("8", Colors.black87, Colors.white,70,70),
+                    button("8", Colors.black87, Colors.white,70,70,),
                     button("5", Colors.black87, Colors.white,70,70),
                     button("2", Colors.black87, Colors.white,70,70),
                     button("00", Colors.black87, Colors.white,70,70),
@@ -282,6 +312,54 @@ class _f_pageState extends State<f_page> {
   buttonpress(String buttontext)
   {
     setState(() {
+
+      // if(buttontext=="AC")
+      //   {
+      //     storevalue="0";
+      //     result="0";
+      //   }
+      // else if(buttontext=="Delete")
+      //   {
+      //     storevalue=storevalue.substring(0,storevalue.length-1);
+      //     if(storevalue=="")
+      //       {
+      //         storevalue="0";
+      //       }
+      //   }
+      // else if(buttontext=="=")
+      //   {
+      //
+      //       expression=storevalue;
+      //       expression =expression.replaceAll('×','*');
+      //       expression =expression.replaceAll('÷','/');
+      //       try
+      //       {
+      //         Parser p = Parser();
+      //         Expression exp = p.parse(expression);
+      //         ContextModel cm=ContextModel();
+      //         result='${exp.evaluate(EvaluationType.VECTOR, cm)}';
+      //
+      //         // DB.save(H_data(history_data:result,value_data: storevalue));
+      //         // sign="=";
+      //         // int c=int.parse(storevalue)+int.parse(result);
+      //         // print()
+      //
+      //       }catch(e){
+      //
+      //         result="EROOR";
+      //       }
+      //   }
+      // else
+      //   {
+      //     if(storevalue=="0")
+      //       {
+      //         storevalue=buttontext;
+      //       }
+      //     else {
+      //       storevalue = storevalue + buttontext;
+      //     }
+      //   }
+
       if(buttontext=="CE")
       {
         if(result=="EROOR")
@@ -296,8 +374,11 @@ class _f_pageState extends State<f_page> {
 
         result="";
         sign="";
+        storevalue="";
 
       }
+
+
       else if(buttontext=="Check")
         {
         }
@@ -314,13 +395,16 @@ class _f_pageState extends State<f_page> {
           if(result=="")
           {
             result="";
+
           }
         }
       else if(buttontext=="GT")
       {
 
       }
+
       else if (buttontext=="="){
+
 
         expression=result;
         expression =expression.replaceAll('×','*');
@@ -332,6 +416,11 @@ class _f_pageState extends State<f_page> {
           ContextModel cm=ContextModel();
           result='${exp.evaluate(EvaluationType.VECTOR, cm)}';
 
+          DB.save(H_data(history_data:result,value_data: storevalue));
+          sign="=";
+          // int c=int.parse(storevalue)+int.parse(result);
+          // print()
+
         }catch(e){
 
           result="EROOR";
@@ -339,9 +428,10 @@ class _f_pageState extends State<f_page> {
 
 
       }
+
       else
       {
-        if(result.length<=11)
+        if(result.length<=15)
           {
             // if(buttontext=="+" || buttontext=="-" || buttontext=="÷" || buttontext=="-" || buttontext=="✕" || buttontext=="%" || buttontext=="+/-"  || buttontext=="√")
             // {
@@ -351,6 +441,8 @@ class _f_pageState extends State<f_page> {
             //   });
             // }
             // else
+
+
               {
                 result= result + buttontext;
               }
@@ -363,6 +455,10 @@ class _f_pageState extends State<f_page> {
 
           // secound=result;
           // result="0";
+
+          // storevalue=result.toString();
+          // result="0";
+          // print('${storevalue}');
 
           setState(() {
             sign=buttontext;
