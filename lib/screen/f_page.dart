@@ -17,10 +17,14 @@ class f_page extends StatefulWidget {
 
 class _f_pageState extends State<f_page> {
 
-  String result="0";
+  String result="";
+  var text="";
   String storevalue="0";
   String sign="";
   String expression="";
+
+  int firstNumber=0;
+  int secondNumber=0 ;
 
 
 
@@ -96,18 +100,18 @@ class _f_pageState extends State<f_page> {
               child: Column(
                 // mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(5,10,0,0),
-                    child: Align(
-                      alignment: Alignment.topLeft,
-                      child: Container(
-                        height: 40,
-                         width: 40,
-                          // color: Colors.red,
-                        child: Center(child: Text("${storevalue.length}",style: TextStyle(fontFamily: "Mydigital",color: Colors.black,fontSize: 20),)),
-                      ),
-                    ),
-                  ),
+                  // Padding(
+                  //   padding: const EdgeInsets.fromLTRB(5,10,0,0),
+                  //   child: Align(
+                  //     alignment: Alignment.topLeft,
+                  //     child: Container(
+                  //       height: 40,
+                  //        width: 40,
+                  //         // color: Colors.red,
+                  //       child: Center(child: Text("${storevalue.length}",style: TextStyle(fontFamily: "Mydigital",color: Colors.black,fontSize: 20),)),
+                  //     ),
+                  //   ),
+                  // ),
 
                   SizedBox(height: 40,),
                   // Expanded(
@@ -313,54 +317,36 @@ class _f_pageState extends State<f_page> {
   {
     setState(() {
 
-      // if(buttontext=="AC")
-      //   {
-      //     storevalue="0";
-      //     result="0";
-      //   }
-      // else if(buttontext=="Delete")
-      //   {
-      //     storevalue=storevalue.substring(0,storevalue.length-1);
-      //     if(storevalue=="")
-      //       {
-      //         storevalue="0";
-      //       }
-      //   }
-      // else if(buttontext=="=")
-      //   {
-      //
-      //       expression=storevalue;
-      //       expression =expression.replaceAll('×','*');
-      //       expression =expression.replaceAll('÷','/');
-      //       try
-      //       {
-      //         Parser p = Parser();
-      //         Expression exp = p.parse(expression);
-      //         ContextModel cm=ContextModel();
-      //         result='${exp.evaluate(EvaluationType.VECTOR, cm)}';
-      //
-      //         // DB.save(H_data(history_data:result,value_data: storevalue));
-      //         // sign="=";
-      //         // int c=int.parse(storevalue)+int.parse(result);
-      //         // print()
-      //
-      //       }catch(e){
-      //
-      //         result="EROOR";
-      //       }
-      //   }
-      // else
-      //   {
-      //     if(storevalue=="0")
-      //       {
-      //         storevalue=buttontext;
-      //       }
-      //     else {
-      //       storevalue = storevalue + buttontext;
-      //     }
-      //   }
+      if(buttontext=="AC")
+        {
+          storevalue="0";
+          result="0";
+        }
+      else if(buttontext=="=")
+        {
 
-      if(buttontext=="CE")
+            expression=result;
+            expression =expression.replaceAll('×','*');
+            expression =expression.replaceAll('÷','/');
+            try
+            {
+              Parser p = Parser();
+              Expression exp = p.parse(expression);
+              ContextModel cm=ContextModel();
+              result='${exp.evaluate(EvaluationType.VECTOR, cm)}';
+
+              DB.save(H_data(history_data:result));
+              sign="=";
+
+
+            }catch(e){
+
+              result="EROOR";
+            }
+        }
+
+
+      else if(buttontext=="CE")
       {
         if(result=="EROOR")
         {
@@ -369,15 +355,6 @@ class _f_pageState extends State<f_page> {
         result="0";
 
       }
-      else if(buttontext=="AC")
-      {
-
-        result="";
-        sign="";
-        storevalue="";
-
-      }
-
 
       else if(buttontext=="Check")
         {
@@ -399,78 +376,127 @@ class _f_pageState extends State<f_page> {
           }
         }
       else if(buttontext=="GT")
-      {
-
-      }
-
-      else if (buttontext=="="){
-
-
-        expression=result;
-        expression =expression.replaceAll('×','*');
-        expression =expression.replaceAll('÷','/');
-        try
-        {
-          Parser p = Parser();
-          Expression exp = p.parse(expression);
-          ContextModel cm=ContextModel();
-          result='${exp.evaluate(EvaluationType.VECTOR, cm)}';
-
-          DB.save(H_data(history_data:result,value_data: storevalue));
-          sign="=";
-          // int c=int.parse(storevalue)+int.parse(result);
-          // print()
-
-        }catch(e){
-
-          result="EROOR";
-        }
-
-
-      }
-
+      {}
       else
       {
         if(result.length<=15)
           {
-            // if(buttontext=="+" || buttontext=="-" || buttontext=="÷" || buttontext=="-" || buttontext=="✕" || buttontext=="%" || buttontext=="+/-"  || buttontext=="√")
-            // {
-            //   setState(() {
-            //     sign=buttontext;
-            //     print(sign);
-            //   });
-            // }
-            // else
-
-
-              {
                 result= result + buttontext;
-              }
-
-
           }
         if(buttontext=="+" || buttontext=="-" || buttontext=="÷" || buttontext=="=" || buttontext=="×" || buttontext=="%" || buttontext=="+/-"  || buttontext=="√")
         {
-
-
-          // secound=result;
-          // result="0";
-
-          // storevalue=result.toString();
-          // result="0";
-          // print('${storevalue}');
-
           setState(() {
             sign=buttontext;
-            print(sign);
           });
         }
 
       }
+      // setState(() {
+      //   result=result;
+      //   print("TEXT:${result}");
+      // });
 
 
     });
 
   }
+
+
+
+
+  // String operation = "";
+  //
+  // void calculate(String buttontext ) {
+  //   if (buttontext == "AC") {
+  //     result = "";
+  //     text = "";
+  //     firstNumber = 0;
+  //     secondNumber = 0;
+  //   }else if(buttontext=="CE")
+  //     {
+  //       result="0";
+  //       setState(() {
+  //
+  //       });
+  //     }
+  //   else if(buttontext=="Delete")
+  //     {
+  //      result=result.substring(0,result.length-1);
+  //      setState(() {
+  //
+  //      });
+  //
+  //     }
+  //
+  //
+  //   else if (buttontext == "+" ||
+  //       buttontext == "-" ||
+  //       buttontext == "×" ||
+  //       buttontext == "÷" ||
+  //   buttontext == "%") {
+  //
+  //
+  //     firstNumber = int.parse(text);
+  //     result = "";
+  //     operation = buttontext;
+  //
+  //
+  //
+  //
+  //     firstNumber = int.parse(text);
+  //     result = "0";
+  //     operation = buttontext;
+  //
+  //   } else if (buttontext == "=") {
+  //     secondNumber = int.parse(text);
+  //     if (operation == "+") {
+  //       result = (firstNumber + secondNumber).toString();
+  //     }
+  //     if (operation == "-") {
+  //       result = (firstNumber - secondNumber).toString();
+  //     }
+  //     if (operation == "×") {
+  //       result = (firstNumber * secondNumber).toString();
+  //     }
+  //     if (operation == "÷") {
+  //       result = (firstNumber ~/ secondNumber).toString();
+  //     }
+  //     if(operation=="%")
+  //       {
+  //         result=(firstNumber % secondNumber).toString();
+  //       }
+  //    DB.save(H_data(history_data:result));
+  //     setState(() {
+  //
+  //     });
+  //
+  //
+  //   } else {
+  //
+  //     if(buttontext=="+" || buttontext=="-" || buttontext=="÷" || buttontext=="-" || buttontext=="✕" || buttontext=="%" || buttontext=="+/-"  || buttontext=="√")
+  //                 {
+  //
+  //                   setState(() {
+  //                     sign=buttontext;
+  //                     print(sign);
+  //                   });
+  //                 }
+  //                 else
+  //                   {
+  //
+  //                   }
+  //
+  //
+  //
+  //   }
+  //     result = int.parse(text + buttontext).toString();
+  //     print("result:${result}");
+  //   setState(() {
+  //     text = result;
+  //     print("Text:${text}");
+  //   });
+  // }
+
+
   
 }

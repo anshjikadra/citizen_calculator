@@ -11,30 +11,37 @@ class homepage extends StatefulWidget {
 
 class _homepageState extends State<homepage> {
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    nextpage();
+  }
+
+  nextpage() async {
+    Future.delayed(Duration(seconds: 3))
+        .then((value) => Navigator.pushReplacement(context, MaterialPageRoute(
+              builder: (context) {
+                return f_page();
+              },
+            )));
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       backgroundColor: Colors.black,
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: Align(
-            alignment: Alignment.bottomCenter,
-            child:  ActionSlider.standard(
-              child: const Text('Get Start'),
-              action: (controller) async {
-                controller.loading(); //starts loading animation
-                await Future.delayed(const Duration(seconds: 1));
-                controller.success();
-                Navigator.pushReplacement(context,MaterialPageRoute(builder: (context) {
-                  return f_page();
-                },));//starts success animation
-              },
-            ),
+          child: Expanded(
+
+        child: Container(
+          height: double.infinity,
+          width: double.infinity,
+          child: Image.asset(
+            "image/calculatorupclose.jpeg",
+            fit: BoxFit.cover,
           ),
         ),
-      ),
-
+      )),
     );
   }
 }

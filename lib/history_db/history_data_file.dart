@@ -11,7 +11,7 @@ class DB {
   static String table = "history";
   static String id = "id";
   static String title = "save_history";
-  static String valuetittle="save_value";
+  // static String valuetittle="save_value";
   // static String script = "script";
 
   static Future<Database> get dbisLoaded async {

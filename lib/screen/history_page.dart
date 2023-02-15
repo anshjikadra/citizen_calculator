@@ -22,7 +22,7 @@ class _history_pageState extends State<history_page> {
 
   get_history() async {
     s_history = await DB.gethistory();
-    s_value = await DB.gethistory();
+    // s_value = await DB.gethistory();
     setState(() {});
   }
 
@@ -55,7 +55,7 @@ class _history_pageState extends State<history_page> {
       body: ListView.builder(itemCount: s_history.length,itemBuilder: (context, index) {
         return ListTile(
           title: Text(s_history[index].history_data,style: TextStyle(color: Colors.black,fontFamily: "Myfont")),
-          leading: Text(s_value[index].value_data,style: TextStyle(color: Colors.black,fontFamily: "Myfont"),),
+         // leading: Text(s_value[index].value_data,style: TextStyle(color: Colors.black,fontFamily: "Myfont"),),
         );
       },),
     );
