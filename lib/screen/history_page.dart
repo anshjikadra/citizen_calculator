@@ -38,7 +38,19 @@ class _history_pageState extends State<history_page> {
         ),
         actions: [
 
-          IconButton(onPressed: () {
+          IconButton(onPressed: (){
+
+            DB.delete(s_history.length);
+            s_history.removeAt(s_history.length);
+            Navigator.pop(context);
+            setState(() {
+
+            });
+
+            // DB.delete(s_history.removeAt);
+            // s_history.removeAt(index);
+            // Navigator.pop(context);
+            // setState(() {});
 
           }, icon:Icon(Icons.delete_rounded,color: Colors.blue,) ),
         ],
