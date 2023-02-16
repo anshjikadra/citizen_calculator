@@ -353,12 +353,14 @@ class _f_pageState extends State<f_page> {
 
               DateTime t=DateTime.now();
               print(t);
+              String time=t.toString();
               value_store += " \n= ${result}";
 
               print(value_store);
 
 
-              DB.save(H_data(history_data:value_store,stor_time:t.toString()));
+
+              DB.save(H_data(history_data:value_store, stor_time: time));
 
               sign="=";
 
@@ -637,3 +639,5 @@ class _f_pageState extends State<f_page> {
   //   return result;
   // }
 }
+
+

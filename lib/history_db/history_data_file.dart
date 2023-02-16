@@ -11,7 +11,7 @@ class DB {
   static String table = "history";
   static String id = "id";
   static String title = "save_history";
-  static String value="save_time";
+  static String time="save_time";
   // static String valuetittle="save_value";
   // static String script = "script";
 
@@ -30,7 +30,7 @@ class DB {
 
   static onCreate(Database db, int version) async {
     await db.execute(
-        "CREATE TABLE $table($id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,$title TEXT)");
+        "CREATE TABLE $table($id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,$title TEXT,$time TEXT)");
   }
 
   static Future<List<H_data>> gethistory() async {

@@ -25,7 +25,7 @@ class _history_pageState extends State<history_page> {
 
   get_history() async {
     s_history = await DB.gethistory();
-    // value_history = await DB.gethistory();
+
     setState(() {});
   }
 
@@ -65,14 +65,15 @@ class _history_pageState extends State<history_page> {
       ),
 
       body: ListView.builder(itemCount: s_history.length,itemBuilder: (context, index) {
+        print(s_history[index]);
         return Padding(
           padding: const EdgeInsets.all(5.0),
           child: Card(
 
             color: Colors.white54,
             child: ListTile(
-              title: Align(alignment: Alignment.topRight,child: Text(_string(s_history[index].history_data),style: TextStyle(color: Colors.black,fontFamily: "Myfont",fontSize: 20))),
-              leading: Text(s_history[index].stor_time,style: TextStyle(color: Colors.black,fontFamily: "Myfont",fontSize: 15),),
+              title: Align(alignment: Alignment.topRight,child: Text(_string(s_history[index].history_data),style: TextStyle(color: Colors.black,fontFamily: "Myfontlight",fontSize: 20))),
+              leading: Text(s_history[index].stor_time,style: TextStyle(color: Colors.black,fontFamily: "Myfontlight",fontSize: 13),),
             ),
           ),
         );
@@ -117,7 +118,7 @@ class _history_pageState extends State<history_page> {
       context: context,
       builder: (BuildContext context) => CupertinoAlertDialog(
         title: const Text('Delete History',style: TextStyle(fontFamily: "Myfont"),),
-        content: const Text('Are you sure you want to delete all history data?',style: TextStyle(fontFamily:"Myfont"),),
+        content: const Text('Are you sure you want to delete all history data?',style: TextStyle(fontFamily:"Myfontlight"),),
         actions: <CupertinoDialogAction>[
           CupertinoDialogAction(
 

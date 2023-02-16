@@ -91,6 +91,10 @@ flutter:
     - family: Mydigital
       fonts:
         - asset: fonts/digital-7.ttf
+    - family: Myfontlight
+      fonts:
+        - asset: fonts/Cera Pro Medium.otf
+
 
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
