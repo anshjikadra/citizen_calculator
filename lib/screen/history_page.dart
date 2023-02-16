@@ -1,4 +1,5 @@
 import 'package:citizen_calculator/screen/f_page.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../history_db/history_data_file.dart';
@@ -14,6 +15,8 @@ class history_page extends StatefulWidget {
 class _history_pageState extends State<history_page> {
 
 
+
+
   @override
   void initState() {
     super.initState();
@@ -22,7 +25,7 @@ class _history_pageState extends State<history_page> {
 
   get_history() async {
     s_history = await DB.gethistory();
-    // s_value = await DB.gethistory();
+    // value_history = await DB.gethistory();
     setState(() {});
   }
 
@@ -40,17 +43,14 @@ class _history_pageState extends State<history_page> {
 
           IconButton(onPressed: (){
 
-            DB.delete(s_history.length);
-            s_history.removeAt(s_history.length);
-            Navigator.pop(context);
-            setState(() {
+            print('Hello');
 
-            });
+            _showAlertDialog(context);
 
-            // DB.delete(s_history.removeAt);
-            // s_history.removeAt(index);
-            // Navigator.pop(context);
-            // setState(() {});
+
+
+
+
 
           }, icon:Icon(Icons.delete_rounded,color: Colors.blue,) ),
         ],
@@ -65,11 +65,88 @@ class _history_pageState extends State<history_page> {
       ),
 
       body: ListView.builder(itemCount: s_history.length,itemBuilder: (context, index) {
-        return ListTile(
-          title: Text(s_history[index].history_data,style: TextStyle(color: Colors.black,fontFamily: "Myfont")),
-         // leading: Text(s_value[index].value_data,style: TextStyle(color: Colors.black,fontFamily: "Myfont"),),
+        return Padding(
+          padding: const EdgeInsets.all(5.0),
+          child: Card(
+
+            color: Colors.white54,
+            child: ListTile(
+              title: Align(alignment: Alignment.topRight,child: Text(_string(s_history[index].history_data),style: TextStyle(color: Colors.black,fontFamily: "Myfont",fontSize: 20))),
+              leading: Text(s_history[index].stor_time,style: TextStyle(color: Colors.black,fontFamily: "Myfont",fontSize: 15),),
+            ),
+          ),
         );
       },),
     );
   }
+
+  String _string(String data) {
+    var list = data.split("");
+    data = list
+        .map(
+          (e) {
+        if (e.contains("+")) {
+          return e = "\n+ ";
+        }
+        if (e.contains("-")) {
+          return e = " \n- ";
+        }
+        if (e.contains("×")) {
+          return e = " \n× ";
+        }
+
+        if (e.contains("÷")) {
+         return e = " \n÷ ";
+        }
+        if (e.contains("%")) {
+          return e = " \n% ";
+        }
+
+        return e;
+      },
+    )
+        .toList()
+        .join();
+    return data;
+  }
+
+
+//CUPERTINO DILOUGE BOX FOR DELETE HISTORY.....................................
+  void _showAlertDialog(BuildContext context) {
+    showCupertinoModalPopup<void>(
+      context: context,
+      builder: (BuildContext context) => CupertinoAlertDialog(
+        title: const Text('Delete History',style: TextStyle(fontFamily: "Myfont"),),
+        content: const Text('Are you sure you want to delete all history data?',style: TextStyle(fontFamily:"Myfont"),),
+        actions: <CupertinoDialogAction>[
+          CupertinoDialogAction(
+
+            isDefaultAction: true,
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            child: const Text('No'),
+          ),
+          CupertinoDialogAction(
+
+            isDestructiveAction: true,
+            onPressed: () {
+
+              DB.delete();
+              s_history.clear();
+              Navigator.pop(context);
+              setState(() {
+
+              });
+              Navigator.pop(context);
+            },
+            child: const Text('Yes'),
+          ),
+        ],
+      ),
+    );
+  }
+
+
+
 }

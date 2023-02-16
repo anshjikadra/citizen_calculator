@@ -67,6 +67,7 @@ class _f_pageState extends State<f_page> {
                                     padding:
                                         const EdgeInsets.fromLTRB(0, 10, 10, 0),
                                     child: Align(
+
                                         alignment: Alignment.topRight,
                                         child: Icon(
                                           CupertinoIcons.clear,
@@ -335,6 +336,8 @@ class _f_pageState extends State<f_page> {
 
 
 
+          String value_store=result;
+
             expression=result;
             expression =expression.replaceAll('×','*');
             expression =expression.replaceAll('÷','/');
@@ -345,11 +348,21 @@ class _f_pageState extends State<f_page> {
               ContextModel cm=ContextModel();
               result='${exp.evaluate(EvaluationType.VECTOR, cm)}';
               //Save history
-              DB.save(H_data(history_data:result));
+
+
+
+              DateTime t=DateTime.now();
+              print(t);
+              value_store += " \n= ${result}";
+
+              print(value_store);
+
+
+              DB.save(H_data(history_data:value_store,stor_time:t.toString()));
+
               sign="=";
 
             }catch(e){
-
               result="EROOR";
             }
         }
@@ -367,6 +380,9 @@ class _f_pageState extends State<f_page> {
           int divide=int.parse(result);
           result=(divide /100).toString();
           print("DIVID:${result}");
+          setState(() {
+
+          });
         }
 
 
@@ -377,7 +393,6 @@ class _f_pageState extends State<f_page> {
           result="";
         }
         result="0";
-
       }
 
 
@@ -414,11 +429,11 @@ class _f_pageState extends State<f_page> {
       {}
       else
       {
-        if(result.length<=15)
+        if(result.length<=14)
           {
                 result= result + buttontext;
           }
-        if(buttontext=="+" || buttontext=="-" || buttontext=="÷" || buttontext=="=" || buttontext=="×" || buttontext=="%" || buttontext=="+/-" || buttontext=="√")
+        if(buttontext=="+" || buttontext=="-" || buttontext=="÷" || buttontext=="=" || buttontext=="×" || buttontext=="+/-" )
         {
 
 
@@ -428,9 +443,6 @@ class _f_pageState extends State<f_page> {
 
 
         }
-
-
-
 
       }
       // setState(() {
@@ -454,6 +466,8 @@ class _f_pageState extends State<f_page> {
       print(result);
     }
   }
+
+
 
 
 

@@ -3,10 +3,12 @@ import 'dart:convert';
 
 List<H_data> s_history=[];
 
+
 class H_data {
 
   int? id;
   String history_data;
+  String stor_time;
   // String value_data;
   // String? english;
 
@@ -18,16 +20,16 @@ class H_data {
 
     id:json["id"],
     history_data: json["save_history"].toString(),
-    // value_data: json["save_value"].toString(),
+    stor_time: json["save_time"].toString(),
 
   );
 
   Map<String, dynamic> toJson() => {
     "id": id,
     "save_history":history_data,
-    // "save_value":value_data,
+    "save_time":stor_time,
 
   };
-  H_data({this.id,required this.history_data});
+  H_data({this.id,required this.history_data,required this.stor_time});
 
 }

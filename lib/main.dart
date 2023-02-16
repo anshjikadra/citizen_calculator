@@ -7,8 +7,8 @@ void main() {
 
   SystemChrome.setSystemUIOverlayStyle(
     SystemUiOverlayStyle(
-      systemNavigationBarColor: Colors.white, // navigation bar color
-      statusBarColor: Colors.white, // status bar color
+      // systemNavigationBarColor: Colors.white, // navigation bar color
+      // statusBarColor: Colors.white, // status bar color
     ),
   );
 
@@ -29,6 +29,6 @@ void main() {
     ),
 
     debugShowCheckedModeBanner: false,
-    home: f_page(),
+    home: homepage(),
   ));
 }

@@ -40,6 +40,7 @@ dependencies:
   math_expressions:
   sqflite:
   path_provider:
+  animated_splash_screen:
 
 dev_dependencies:
   flutter_test:

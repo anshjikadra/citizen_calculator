@@ -11,6 +11,7 @@ class DB {
   static String table = "history";
   static String id = "id";
   static String title = "save_history";
+  static String value="save_time";
   // static String valuetittle="save_value";
   // static String script = "script";
 
@@ -48,8 +49,8 @@ class DB {
     return save;
   }
 
-  static delete(int where) async {
+  static delete() async {
     var db = await dbisLoaded;
-    db.delete(table, where: "$id=?", whereArgs: [where]);
+    db.delete(table);
   }
 }
