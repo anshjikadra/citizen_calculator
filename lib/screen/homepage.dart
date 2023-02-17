@@ -31,18 +31,13 @@ class _homepageState extends State<homepage> {
     return Scaffold(
 
         body: SafeArea(
-
             child:Expanded(
           child: Container(
             height: double.infinity,
             //color: Colors.lightGreen,
             child: Image.asset("image/calculator+closeup+1.jpeg",fit: BoxFit.cover,),
           ),
-        ))
-    
-    
-    
-    
+        )),
     );
   }
 }
