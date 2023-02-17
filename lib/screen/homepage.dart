@@ -21,7 +21,7 @@ class _homepageState extends State<homepage> {
 
   splash()
   async{
-    await Future.delayed(Duration(seconds: 2)).then((value) => Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
+    await Future.delayed(Duration(seconds: 12)).then((value) => Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
       return f_page();
     },)));
   }
@@ -30,15 +30,31 @@ class _homepageState extends State<homepage> {
   Widget build(BuildContext context) {
     return Scaffold(
 
-        body: Align(
-            alignment: Alignment.center,
-            child: Text(
-              "Citizen Calculator",
-              style: TextStyle(
-                fontFamily: "Myfont",
-                color: Colors.black,
-                fontSize: 30,
-              ),
-            )),backgroundColor: Colors.lightGreen[100],);
+        body: SafeArea(
+
+            child:Expanded(
+          child: Container(
+            height: double.infinity,
+            //color: Colors.lightGreen,
+            child: Image.asset("image/calculator+closeup+1.jpeg",fit: BoxFit.cover,),
+          ),
+        ))
+    
+    
+    
+    
+    );
   }
 }
+
+/*
+Align(
+alignment: Alignment.center,
+child: Text(
+"Citizen Calculator",
+style: TextStyle(
+fontFamily: "Myfont",
+color: Colors.black,
+fontSize: 30,
+),
+)),backgroundColor: Colors.lightGreen[100],*/

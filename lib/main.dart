@@ -8,12 +8,12 @@ String MORE_APP = 'itms-apps://apps.apple.com/us/developer/jasmatbhai-satashiya/
 
 void main() {
 
-  SystemChrome.setSystemUIOverlayStyle(
-    SystemUiOverlayStyle(
-      // systemNavigationBarColor: Colors.white, // navigation bar color
-      // statusBarColor: Colors.white, // status bar color
-    ),
-  );
+  // SystemChrome.setSystemUIOverlayStyle(
+  //   // SystemUiOverlayStyle(
+  //   //   // systemNavigationBarColor: Colors.white, // navigation bar color
+  //   //   // statusBarColor: Colors.white, // status bar color
+  //   // ),
+  // );
 
 
   runApp(MaterialApp(
