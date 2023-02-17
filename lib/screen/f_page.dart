@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:citizen_calculator/screen/history_page.dart';
+import 'package:citizen_calculator/screen/setting_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:math_expressions/math_expressions.dart';
@@ -65,14 +66,11 @@ class _f_pageState extends State<f_page> {
                               children: [
                                 Padding(
                                     padding:
-                                        const EdgeInsets.fromLTRB(0, 10, 10, 0),
-                                    child: Align(
-
-                                        alignment: Alignment.topRight,
-                                        child: Icon(
-                                          CupertinoIcons.clear,
-                                          color: Colors.black,
-                                        ))),
+                                        const EdgeInsets.fromLTRB(0, 0, 10, 0),
+                                    child: CupertinoDialogAction(onPressed: () {
+                                      Navigator.pop(context);
+                                    },child:Align(alignment: Alignment.topRight,child: Text("×",style: TextStyle(fontSize: 45,color: Colors.black),)))
+                                ),
                                 CupertinoDialogAction(
                                   onPressed: () {
                                     Navigator.push(context, MaterialPageRoute(
@@ -90,7 +88,12 @@ class _f_pageState extends State<f_page> {
                                 ),
                                 Divider(),
                                 CupertinoDialogAction(
-                                  onPressed: () {},
+                                  onPressed: () {
+
+                                    Navigator.push(context,MaterialPageRoute(builder: (context) {
+                                      return setting_page();
+                                    },));
+                                  },
                                   child: Text(
                                     "Settings",
                                     style: TextStyle(
@@ -400,6 +403,7 @@ class _f_pageState extends State<f_page> {
 
       else if(buttontext=="Check")
         {
+          result=result.substring(0,result.length-1);
         }
 
 
@@ -456,18 +460,18 @@ class _f_pageState extends State<f_page> {
 
 
   }
-  squrt()
-  {
-    if(buttontext == "√")
-    {
-      double a=25;
-      double b=sqrt(a);
-      print("${b}");
-      sqrt(b);
-      result=b.toString();
-      print(result);
-    }
-  }
+  // squrt()
+  // {
+  //   if(buttontext == "√")
+  //   {
+  //     double a=25;
+  //     double b=sqrt(a);
+  //     print("${b}");
+  //     sqrt(b);
+  //     result=b.toString();
+  //     print(result);
+  //   }
+  // }
 
 
 

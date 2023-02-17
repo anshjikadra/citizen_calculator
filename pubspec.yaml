@@ -41,6 +41,8 @@ dependencies:
   sqflite:
   path_provider:
   animated_splash_screen:
+  rate_my_app:
+  share_plus:
 
 dev_dependencies:
   flutter_test:
