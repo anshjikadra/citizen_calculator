@@ -27,8 +27,10 @@ class _history_pageState extends State<history_page> {
   get_history() async {
 
     s_history = await DB.gethistory();
-    s_history.reversed.toList();
-    print(s_history);
+
+   hisstory=List.from(s_history.reversed);
+    // s_history.reversed.toList();
+    // print(s_history);
 
     setState(() {});
   }
@@ -81,8 +83,8 @@ class _history_pageState extends State<history_page> {
             color: Colors.white54,
             child: ListTile(
 
-              title: Align(alignment: Alignment.topRight,child: Text(_string(s_history[index].history_data),style: TextStyle(color: Colors.black,fontFamily: "Myfontlight",fontSize: 20))),
-              leading: Text(s_history[index].stor_time,style: TextStyle(color: Colors.black,fontFamily: "Myfontlight",fontSize: 13),),
+              title: Align(alignment: Alignment.topRight,child: Text(_string(hisstory[index].history_data),style: TextStyle(color: Colors.black,fontFamily: "Myfontlight",fontSize: 20))),
+              leading: Text(hisstory[index].stor_time,style: TextStyle(color: Colors.black,fontFamily: "Myfontlight",fontSize: 13),),
             ),
           ),
         );

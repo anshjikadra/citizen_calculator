@@ -21,7 +21,7 @@ class _homepageState extends State<homepage> {
 
   splash()
   async{
-    await Future.delayed(Duration(seconds: 3)).then((value) => Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
+    await Future.delayed(Duration(seconds: 2)).then((value) => Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
       return f_page();
     },)));
   }
