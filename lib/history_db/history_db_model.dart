@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 
+// List<H_data> hisstory=[];
 List<H_data> s_history=[];
 
 

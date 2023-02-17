@@ -3,6 +3,9 @@ import 'package:citizen_calculator/screen/homepage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+
+String MORE_APP = 'itms-apps://apps.apple.com/us/developer/jasmatbhai-satashiya/id1656353988';
+
 void main() {
 
   SystemChrome.setSystemUIOverlayStyle(

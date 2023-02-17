@@ -2,9 +2,12 @@
 
 import 'dart:io';
 
+import 'package:citizen_calculator/main.dart';
 import 'package:citizen_calculator/screen/f_page.dart';
 import 'package:flutter/material.dart';
 import 'package:rate_my_app/rate_my_app.dart';
+import 'package:share_plus/share_plus.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 
 class setting_page extends StatefulWidget {
@@ -22,8 +25,11 @@ class _setting_pageState extends State<setting_page> {
     minDays: 0,
     minLaunches: 2,
     googlePlayIdentifier: 'gujarati.kids.learning',
-    appStoreIdentifier: '1661741363',
+    appStoreIdentifier: '1672493471',
   );
+
+
+
 
 
 
@@ -69,15 +75,15 @@ class _setting_pageState extends State<setting_page> {
                     fontSize: 20),
               ),
               leading: Container(
-                height: 50,
-                width: 50,
+                height: 40,
+                width: 40,
                 decoration: BoxDecoration(
-                  color: Colors.lightBlue,
+                  color: Colors.lightBlueAccent,
                   borderRadius: BorderRadius.circular(25),
                 ),
                 child: Icon(
                   Icons.star_border_sharp,
-                  size: 25,
+                  size: 20,
                   color: Colors.black,
                 ),
               ),
@@ -88,33 +94,9 @@ class _setting_pageState extends State<setting_page> {
               indent: 25,
             ),
             ListTile(
-              title: Text(
-                "Feedback",
-                style: TextStyle(
-                    fontFamily: "Myfontlight",
-                    color: Colors.black,
-                    fontSize: 20),
-              ),
-              leading: Container(
-                height: 50,
-                width: 50,
-                decoration: BoxDecoration(
-                  color: Colors.lightBlue,
-                  borderRadius: BorderRadius.circular(25),
-                ),
-                child: Icon(
-                  Icons.feedback_outlined,
-                  size: 25,
-                  color: Colors.black,
-                ),
-              ),
-            ),
-            Divider(
-              color: Colors.black,
-              endIndent: 25,
-              indent: 25,
-            ),
-            ListTile(
+              onTap: () {
+                Share.share("https://apps.apple.com/us/app/citizen-basic-calculator/id1672493471");
+              },
               title: Text(
                 "Share",
                 style: TextStyle(
@@ -123,15 +105,15 @@ class _setting_pageState extends State<setting_page> {
                     fontSize: 20),
               ),
               leading: Container(
-                height: 50,
-                width: 50,
+                height: 40,
+                width: 40,
                 decoration: BoxDecoration(
-                  color: Colors.lightBlue,
+                  color: Colors.lightBlueAccent,
                   borderRadius: BorderRadius.circular(25),
                 ),
                 child: Icon(
                   Icons.share,
-                  size: 25,
+                  size: 20,
                   color: Colors.black,
                 ),
               ),
@@ -142,6 +124,10 @@ class _setting_pageState extends State<setting_page> {
               indent: 25,
             ),
             ListTile(
+              onTap: () {
+                Share.share(MORE_APP);
+
+              },
               title: Text(
                 "More Apps",
                 style: TextStyle(
@@ -150,15 +136,15 @@ class _setting_pageState extends State<setting_page> {
                     fontSize: 20),
               ),
               leading: Container(
-                height: 50,
-                width: 50,
+                height: 40,
+                width: 40,
                 decoration: BoxDecoration(
-                  color: Colors.lightBlue,
+                  color: Colors.lightBlueAccent,
                   borderRadius: BorderRadius.circular(25),
                 ),
                 child: Icon(
                   Icons.app_registration_sharp,
-                  size: 25,
+                  size: 20,
                   color: Colors.black,
                 ),
               ),
@@ -208,6 +194,8 @@ class _setting_pageState extends State<setting_page> {
     );
 
   }
+
+
 
 
 
